@@ -3,10 +3,18 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const ProductComponent = () => {
   const products = useSelector((state) => state.allProducts.products);
-  const renderList = products.map((product) => {
+  const searchInput = useSelector((state) => state.addSearch.searchInput);
+  const filteredProducts = searchInput
+    ? products.filter((product) => {
+        const { title, category } = product;
+        const searchTerm = searchInput.toLowerCase(); // Convert search input to lowercase for case-insensitive search
+        return title.toLowerCase().includes(searchTerm) || category.toLowerCase().includes(searchTerm);
+      })
+    : products;
+  const renderList = filteredProducts.map((product) => {
     const { id, title, image, price, category } = product;
     return (
-      <div className="four wide column" key={id}>
+      <div className="sixteen wide mobile eight wide tablet four wide computer column" key={id}>
         <Link to={`/product/${id}`}>
           <div className="ui link cards">
             <div className="card">
