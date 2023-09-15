@@ -6,6 +6,12 @@ export const setProducts = (products) => {
     payload: products,
   };
 };
+export const addSearch = (search) => {
+  return {
+    type: ActionTypes.ADD_SEARCH_INPUT,
+    payload: search,
+  };
+};
 
 export const selectedProduct = (product) => {
   return {

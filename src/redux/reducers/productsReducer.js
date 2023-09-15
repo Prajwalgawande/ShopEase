@@ -23,3 +23,19 @@ export const selectedProductsReducer = (state = {}, { type, payload }) => {
       return state;
   }
 };
+const initialState = {
+  searchInput: '', 
+};
+
+export const addsearchinput = (state = initialState, { type, payload }) => {
+  console.log(type);
+  switch (type) {
+    case ActionTypes.ADD_SEARCH_INPUT:
+      return {
+        ...state,
+        searchInput: payload, 
+      };
+    default:
+      return state;
+  }
+};
